@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>‘사랑. 추억. 빛’ 송정애 개인전 2025</title>
+  <style>
+    :root{
+      --bg: #d8d1c8;          /* 베이지+회색 */
+      --card: rgba(255,255,255,0.72);
+      --card2: rgba(255,255,255,0.88);
+      --text: #2b2b2b;
+      --muted: #5b5b5b;
+      --shadow: 0 10px 30px rgba(0,0,0,.10);
+      --radius: 18px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Malgun Gothic","맑은 고딕",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.45), rgba(255,255,255,0)),
+        radial-gradient(1200px 700px at 90% 60%, rgba(255,255,255,.35), rgba(255,255,255,0)),
+        linear-gradient(180deg, #dfd8cf 0%, var(--bg) 100%);
+      min-height:100vh;
+    }
+    header{
+      max-width: var(--max);
+      margin: 28px auto 10px;
+      padding: 0 18px;
+    }
+    .hero{
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 18px;
+      backdrop-filter: blur(6px);
+    }
+    .title{
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      margin: 0 0 6px 0;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+    main{
+      max-width: var(--max);
+      margin: 16px auto 60px;
+      padding: 0 18px;
+    }
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 980px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 560px){ .grid{ grid-template-columns: 1fr; } }
+    figure{
+      margin:0;
+      background: var(--card2);
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 8px 22px rgba(0,0,0,.08);
+      transition: transform .12s ease, box-shadow .12s ease;
+      cursor: zoom-in;
+    }
+    figure:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.12);
+    }
+    .thumb{
+      width: 100%;
+      aspect-ratio: 14 / 10;
+      object-fit: cover;
+      display:block;
+      background: #eee;
+    }
+    figcaption{
+      padding: 12px 12px 14px;
+      text-align: center;
+    }
+    .work-title{
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+    .work-desc{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .footer{
+      text-align:center;
+      color: rgba(0,0,0,.55);
+      font-size: 12px;
+      margin-top: 18px;
+    }
+
+    /* Lightbox */
+    .lb{
+      position: fixed;
+      inset: 0;
+      background: rgba(30,30,30,.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .lb.open{ display:flex; }
+    .lb-card{
+      width: min(980px, 100%);
+      background: rgba(250,250,250,.96);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,.30);
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(6px);
+    }
+    .lb-img{
+      width: 100%;
+      height: auto;
+      display:block;
+      max-height: 72vh;
+      object-fit: contain;
+      background: #111;
+    }
+    .lb-meta{
+      padding: 12px 14px 14px;
+      text-align:center;
+    }
+    .lb-meta h3{
+      margin: 0 0 6px 0;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+    .lb-meta p{
+      margin: 0;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+    }
+    .lb-bar{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.85);
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .btn{
+      border: 1px solid rgba(0,0,0,.12);
+      background: white;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select:none;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{ border-color: rgba(0,0,0,.18); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <h1 class="title">‘사랑. 추억. 빛’ 송정애 개인전 2025</h1>
+      <p class="subtitle">
+        장소: 서울 명동 갤러리1898에서 8월 8일부터 17일까지 /
+        내용:‘제14회 사랑·생명·가정 전국 사진 공모전’ 전시 및 송정애(글라라) 작가 개인전
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="grid"></section>
+    <div class="footer">© 2025 Songjeongae</div>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-card" role="dialog" aria-modal="true">
+      <img class="lb-img" id="lbImg" alt="" />
+      <div class="lb-meta">
+        <h3 id="lbTitle"></h3>
+        <p id="lbDesc">그림설명입니다.</p>
+      </div>
+      <div class="lb-bar">
+        <div style="display:flex; gap:10px;">
+          <button class="btn" id="prevBtn" type="button">이전</button>
+          <button class="btn" id="nextBtn" type="button">다음</button>
+        </div>
+        <button class="btn primary" id="closeBtn" type="button">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL = 30;
+    const grid = document.getElementById('grid');
+
+    const works = [
+      { file: 'images/s1.jpg', title: '가시관1', desc: '장지채색화, 판넬 24x24' },
+      { file: 'images/s2.jpg', title: '돌로미티의 추억(이탈리아, 에덴가족들)', desc: '콜라쥬, 17.5x17.5' },
+      { file: 'images/s3.jpg', title: '의좋은 형제(우영10세, 우주4세)', desc: '콜라쥬, 17.5x17.5' },
+      { file: 'images/s4.jpg', title: '행복한 가족(괌, 아들가족)', desc: '콜라쥬, 24x24' },
+      { file: 'images/s5.jpg', title: '알프스마을에서(스위스)', desc: '콜라쥬, 33.5x45.5' },
+      { file: 'images/s6.jpg', title: '둘이서 함께(프랑스, 몽생미셀, 조카 희정부부)', desc: '아크릴화, 27.3x40.9' },
+      { file: 'images/s7.jpg', title: 'carezzo 호수 앞에서(이탈리아, 석수사님)', desc: '아크릴화, 40.9x27.3' },
+      { file: 'images/s8.jpg', title: '손내미시는 예수님', desc: '아크릴화, 202x90, 소장처: 범계성당' },
+      { file: 'images/s9.jpg', title: '마리아는 길을 떠나', desc: '유화, 41x53, 소장처: 마리아의 전교자 프란치스코 수녀원' },
+      { file: 'images/s10.jpg', title: '다미아노 십자가', desc: '유화, 89.4x130.3' },
+      { file: 'images/s11.jpg', title: 'Laudato Si(찬미받으소서), 가족의 역사', desc: '혼합재료' },
+      { file: 'images/s12.jpg', title: 'Viva La Vida 2(성프란치스코)', desc: '혼합재료, 72.5x92' },
+      { file: 'images/s13.jpg', title: 'Viva La Vida 3(프란치스코 교황님 성모님 품에!)', desc: '혼합재료, 72.5x92' },
+      { file: 'images/s14.jpg', title: 'Hi,Junhoo!(조카부부)', desc: '혼합재료, 27.3x40.9' },
+      { file: 'images/s15.jpg', title: '꽃밭에서(제자의 하루)', desc: '아크릴화, 40.9x27.3' },
+      { file: 'images/s16.jpg', title: '터키순례', desc: '유화, 100x72.7, 소장처: 정동 수도원' },
+      { file: 'images/s17.jpg', title: '축! 부제서품(라파엘 신부님)', desc: '아크릴화, 27.3x40.9' },
+      { file: 'images/s18.jpg', title: '에펠탑 앞에서(토마스 아퀴나스 신부님)', desc: '아크릴화' },
+      { file: 'images/s19.jpg', title: 'Viva La Vida 1(인생만세)', desc: '혼합재료, 193x93' },
+      { file: 'images/s20.jpg', title: '수도원의 아침', desc: '유화, 90.5x64, 소장처: 악양수도원' },
+      { file: 'images/s21.jpg', title: '수도원 나들이', desc: '유화, 72.7x53, 소장처: 성거산 수도원' },
+      { file: 'images/s22.jpg', title: 'Peace', desc: '장지에 채색화, 판넬, 24.2x33.4' },
+      { file: 'images/s23.jpg', title: 'Rejoy', desc: '장지에 채색화, 판넬, 24.2x33.4' },
+      { file: 'images/s24.jpg', title: '우리성당 길고양이 1', desc: '아크릴화, 40.5x27, 소장처: 범계성당' },
+      { file: 'images/s25.jpg', title: '우리성당 길고양이 2', desc: '아크릴화, 40.5x27, 소장처: 범계성당' },
+      { file: 'images/s26.jpg', title: '쉬어가다 1', desc: '혼합재료, 22x27.3' },
+      { file: 'images/s27.jpg', title: '쉬어가다 2', desc: '혼합재료, 22x27.3' },
+      { file: 'images/s28.jpg', title: '기도실의 아침', desc: '유화, 33x22, 소장처: 물왕수녀원' },
+      { file: 'images/s29.jpg', title: '아씨시를 향하여(나자로 신부님)', desc: '아크릴화, 27.3x40.9' },
+      { file: 'images/s30.jpg', title: '산다미아노앞에서(이탈리아) 요한수사님', desc: '아크릴화, 27.3x40.9' }
+    ];
+
+    works.forEach((w, idx) => {
+      const fig = document.createElement('figure');
+      fig.dataset.index = String(idx);
+      fig.innerHTML = `
+        <img class="thumb" src="${w.file}" alt="${w.title}">
+        <figcaption>
+          <p class="work-title">${w.title}</p>
+          <p class="work-desc">${w.desc}</p>
+        </figcaption>
+      `;
+      fig.addEventListener('click', () => openLightbox(idx));
+      grid.appendChild(fig);
+    });
+
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbDesc = document.getElementById('lbDesc');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    let cur = 0;
+
+    function openLightbox(i){
+      cur = i;
+      const w = works[cur];
+      lbImg.src = w.file;
+      lbImg.alt = w.title;
+      lbTitle.textContent = w.title;
+      lbDesc.textContent = w.desc;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+    function prev(){
+      cur = (cur - 1 + works.length) % works.length;
+      openLightbox(cur);
+    }
+    function next(){
+      cur = (cur + 1) % works.length;
+      openLightbox(cur);
+    }
+
+    prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); prev(); });
+    nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+    closeBtn.addEventListener('click', (e)=>{ e.stopPropagation(); closeLightbox(); });
+
+    lb.addEventListener('click', closeLightbox);
+    window.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      if(e.key === 'ArrowLeft') prev();
+      if(e.key === 'ArrowRight') next();
+    });
+  </script>
+</body>
+</html>
